@@ -7,6 +7,8 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Hungry {
@@ -17,6 +19,7 @@ public class Hungry {
 	private String lastName;
 	private String contactNumber;
 	private String contactEmail;
+	
 	@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name="street", column=@Column(name="BILL_STREET")),
@@ -33,6 +36,11 @@ public class Hungry {
 		@AttributeOverride(name="zip", column=@Column(name="SHIP_ZIP")),
 	})	
 	private Address shippingAddress;
+	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,14 +78,15 @@ public class Hungry {
 		this.shippingAddress = shippingAddress;
 	}
 	public Hungry(String firstName, String lastName, String contactNumber,
-			String contactEmail, Address billingAddress, Address shippingAddress) {
-		super();
+			String contactEmail, Address billingAddress, Address shippingAddress, User userId) {
+
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.contactNumber = contactNumber;
 		this.contactEmail = contactEmail;
 		this.billingAddress = billingAddress;
 		this.shippingAddress = shippingAddress;
+		this.user = userId;
 	}
 	
 	public Hungry(){

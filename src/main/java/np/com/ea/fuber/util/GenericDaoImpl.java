@@ -29,7 +29,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
         return t;
     }
  
-    public void delete(Long id) {
+    public void delete(int id) {
 
         T t = (T) sf.getCurrentSession()
                 .load(daoType, id);
@@ -39,7 +39,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     }
 
-    public T find(Long id) {
+    public T find(int id) {
         return (T) sf.getCurrentSession().get(daoType, id);
     }
 

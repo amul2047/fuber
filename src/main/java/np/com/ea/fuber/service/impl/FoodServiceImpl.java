@@ -50,14 +50,6 @@ public class FoodServiceImpl implements FoodService {
 	{
 		return foodDao.getFoodByFeederId(feederId);
 	}
-//
-//
-//	public List<ReleaseBacklog> getReleaseByProductBacklogId(
-//			Long productbacklogId) {
-//		// TODO Auto-generated method stub
-//		return releaseBacklogDao.getReleasebyProductBacklogId(productbacklogId);
-//	}
-
 
 	
 	

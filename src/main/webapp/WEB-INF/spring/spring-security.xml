@@ -1,38 +1,59 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<http auto-config="true">
-		<intercept-url pattern="/" access="ROLE_USER" />
-<!-- 		<intercept-url pattern="/productbacklog/**/**" access="ROLE_OWNER" /> -->
-<!-- 		<intercept-url pattern="/userstory/" access="ROLE_MASTER , ROLE_OWNER" /> -->
-		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<form-login 
-		    login-page="/login" 
-		    default-target-url="/productbacklog/" 
-		    always-use-default-target="true"
-			authentication-failure-url="/loginfailed" 
-			/>
-		<logout logout-success-url="/logout"  />
-		<!-- enable csrf protection -->
-		<csrf/>
-		
-		<access-denied-handler error-page="/403" />
-		<logout logout-success-url="/logout" />
-	</http>
+	<security:global-method-security
+		pre-post-annotations="enabled" />
 
-	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="parag" password="123456" authorities="ROLE_USER" />
-				<user name="powner" password="123456" authorities="ROLE_OWNER" />
-				<user name="smaster" password="123456" authorities="ROLE_MASTER" />
-				
-			</user-service>
-		</authentication-provider>
-	</authentication-manager>
+	<security:http use-expressions="true">
+		<security:remember-me key="np.com.ea.fuber" />
 
-</beans:beans>
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
+		<security:intercept-url pattern="/logout"
+			access="permitAll" />
+		<security:intercept-url pattern="/feeder"
+			access="hasRole('ROLE_HUNGRY')" />
+		<security:intercept-url pattern="/admin**"
+			access="hasAnyRole('ROLE_ADMIN')" />
+
+		<!-- <security:intercept-url pattern="/display" -->
+		<!-- access="isAuthenticated()" /> -->
+		<security:form-login login-processing-url="/j_spring_security_check"
+			login-page="/auth/login" default-target-url="/auth/storeLogin"
+			always-use-default-target="true" authentication-failure-url="/auth/denied" />
+		<security:logout logout-success-url="/auth/login" />
+		<security:session-management
+			invalid-session-url="/" />
+
+		<security:csrf disabled="true" />
+	</security:http>
+	<!-- 	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="hungry" password="hungry"
+					authorities="ROLE_HUNGRY" />
+				<security:user name="feeder" password="feeder"
+					authorities="ROLE_FEEDER" />
+				<security:user name="admin" password="admin"
+					authorities="ROLE_ADMIN" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+ -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<!--  <security:password-encoder hash="bcrypt" />-->
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select username,password, enabled from users where username=?"
+				authorities-by-username-query="select username, role from users where username =?" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

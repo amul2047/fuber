@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -61,14 +63,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                  
-                  <span class="hidden-xs">Product Owner</span>
+                  <span class="hidden-xs"><c:out value="${role}" /></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                   
                     <p>
-                      Amul Sapkota - Web Developer
+                      <c:out value="${username}" />
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
@@ -77,7 +79,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="<c:url value="../j_spring_security_logout" />" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -109,7 +111,7 @@
               </a>
             </li>
             <li>
-              <a href="<c:url value="/feeder/profile/"/>">
+              <a href="<c:url value="../hungry/profile/${sessionScope.USER_ID}"/>">
                 <i class="fa fa-th"></i> <span>Profile</span>
               </a>
             </li>
@@ -118,19 +120,22 @@
                 <i class="fa fa-th"></i> <span>Order History</span>
               </a> 
             </li>
-    <!--         
+   
+<sec:authorize access="hasRole('feeder')">
+        
             <li class="header">Feeder</li>
             <li class="treeview">
               <a href="<c:url value="/dashboard/"/>">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
             </li>
+</sec:authorize>
             <li>
               <a href="<c:url value="/productbacklog/"/>">
                 <i class="fa fa-th"></i> <span>Feeders</span>
               </a>
             </li>
-       --> 
+       
             <li class="header">Admin </li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Reports</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Customers</span></a></li>

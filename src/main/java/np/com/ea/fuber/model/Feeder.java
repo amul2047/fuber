@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Feeder {
@@ -33,6 +34,10 @@ public class Feeder {
 	public Feeder(){
 
 	}
+	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@OneToMany ( cascade =CascadeType.ALL)
 	@JoinColumn(name="feederId")
