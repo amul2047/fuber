@@ -18,7 +18,6 @@ public interface FoodService {
 
 	public List<Food> getFoodByFeederId(int feederId);
 
-	//public List<ReleaseBacklog> getReleaseByProductBacklogId(int productbacklogId);
 }
 
 

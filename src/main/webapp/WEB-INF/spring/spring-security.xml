@@ -27,7 +27,8 @@
 		<security:form-login login-processing-url="/j_spring_security_check"
 			login-page="/auth/login" default-target-url="/auth/storeLogin"
 			always-use-default-target="true" authentication-failure-url="/auth/denied" />
-		<security:logout logout-success-url="/auth/login" />
+		
+		<security:logout logout-success-url="/auth/login"/>
 		<security:session-management
 			invalid-session-url="/" />
 

@@ -23,8 +23,7 @@ public class DashboardController
 	//@Autowired
 	//private FeederService feederService;
 	
-	@Autowired
-	private HungryService hungryService;
+	
 	
 	@RequestMapping(value = { "/dashboard" })
 	public String showDashboard() 
@@ -32,14 +31,6 @@ public class DashboardController
 		return "dashboard/index";
 	}
 	
-	@RequestMapping(value = { "/hungry/profile/{userId}" })
-	public String myProfile(@PathVariable("userId") int userId, Map<String, Object> map)
-	{	
-		map.put("Hungry", new Hungry());
-		map.put("Hungry",hungryService.find(userId));
-		System.out.println(">>>>>>>"+hungryService.find(userId).getFirstName());
-		return "hungry/index";
-	}
 
 //	@RequestMapping(value = { "/feeder", })
 //	public String listFeeder(Map<String, Object> map) 

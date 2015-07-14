@@ -11,7 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,6 +28,10 @@ public class Order {
 	
 	@OneToMany(mappedBy="order",  cascade =CascadeType.ALL)
 	private List<OrderItem> orderItem = new ArrayList<OrderItem>();
+	
+	@OneToOne
+	@JoinColumn(name="hungryId")
+	private Hungry hungry;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderDateTime;

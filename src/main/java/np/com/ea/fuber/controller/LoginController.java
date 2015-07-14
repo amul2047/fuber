@@ -42,11 +42,6 @@ public class LoginController {
 		return "/login/loginfailed";
 	}
 
-	// @RequestMapping (value={"/","/login"})
-	// public String login() {
-	// System.out.print("??????????????login Controller");
-	// return "login/login";
-	// }
 
 	@RequestMapping(value = "/403")
 	public String accessDenied(Model model) {

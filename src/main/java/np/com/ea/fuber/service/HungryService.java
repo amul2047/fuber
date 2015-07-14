@@ -17,6 +17,8 @@ public interface HungryService {
 
 	public Hungry update(Hungry hungry);
 
+	//List orderHistoryByUserId(int userId);
+
 
 }
 
