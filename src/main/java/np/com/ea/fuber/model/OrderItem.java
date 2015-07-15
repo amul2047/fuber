@@ -16,10 +16,26 @@ import javax.persistence.Table;
 public class OrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="order_id")
+
 	private int id;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Food getFood() {
+		return food;
+	}
+
+	public void setFood(Food food) {
+		this.food = food;
+	}
+
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="orderId")
 	private Order order;
 	

@@ -7,13 +7,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,18 +28,27 @@ public class Order {
 	@Column(name="order_id")
 	private int id;
 	
-	@OneToMany(mappedBy="order",  cascade =CascadeType.ALL)
-	private List<OrderItem> orderItem = new ArrayList<OrderItem>();
-	
-	@OneToOne
+	@ManyToOne (fetch=FetchType.EAGER)
 	@JoinColumn(name="hungryId")
 	private Hungry hungry;
+	
+	
+	public Hungry getHungry() {
+		return hungry;
+	}
+
+	public void setHungry(Hungry hungry) {
+		this.hungry = hungry;
+	}
+
+	@OneToMany(mappedBy="order",  cascade =CascadeType.ALL, fetch=FetchType.EAGER )
+	private List<OrderItem> orderItem = new ArrayList<OrderItem>();
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderDateTime;
 	
-	@Enumerated
-	private OrderStatus status;
+//	@Enumerated(EnumType.STRING)
+//	private OrderStatus status;
 
 	public int getId() 
 	{
@@ -48,13 +59,13 @@ public class Order {
 		id = orderId1;
 	}
 	
-	public OrderStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(OrderStatus status) {
-		this.status = status;
-	}
+//	public OrderStatus getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(OrderStatus status) {
+//		this.status = status;
+//	}
 
 	public List<OrderItem> getOrderItem() {
 		return orderItem;

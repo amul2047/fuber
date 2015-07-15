@@ -117,12 +117,13 @@
 					</a></li>
 
 					<li class="header">Feeder</li>
-					<li class="treeview"><a href="<c:url value="/dashboard/"/>">
-							<i class="fa fa-dashboard"></i> <span>Dashboard</span>
-					</a></li>
 
-					<li><a href="<c:url value="/productbacklog/"/>"> <i
-							class="fa fa-th"></i> <span>Feeders</span>
+					<li><a href="<c:url value="/feeder/viewOrders/${sessionScope.USER_ID}"/>"> <i
+							class="fa fa-th"></i> <span>View Orders</span>
+					</a></li>
+					
+					<li><a href="<c:url value="/feeder/profile/${sessionScope.USER_ID}"/>"> <i
+							class="fa fa-th"></i> <span>My Profile</span>
 					</a></li>
 
 					<li class="header">Admin</li>

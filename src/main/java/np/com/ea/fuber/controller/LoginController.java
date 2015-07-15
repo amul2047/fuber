@@ -28,7 +28,7 @@ public class LoginController {
 	public String getLoginPage(@RequestParam(value = "error", required = false) boolean error,
 			ModelMap model) {
 		
-		System.out.println(">>>>>>>>>>>>>>>>>>>>Received request to show login page");
+		//System.out.println(">>>>>>>>>>>>>>>>>>>>Received request to show login page");
 		
 		return "login/login";
 	}
@@ -66,7 +66,7 @@ public class LoginController {
 		//System.out.println("USER>>"+user.getUsername() + "PASS>>>" +user.getPassword() +"AUTH>>"+ user.getAuthorities() );
 		
 		np.com.ea.fuber.model.User us = userService.getUserIdByUserName(user.getUsername());
-		System.out.println("===================="+us);
+		//System.out.println("===================="+us);
 		model.addAttribute("USER_ID", us.getId());
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("role", user.getAuthorities());

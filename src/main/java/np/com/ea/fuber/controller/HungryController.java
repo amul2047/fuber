@@ -79,9 +79,7 @@ public class HungryController
 			Map<String, Object> map, HttpSession session)
 	{
 		session.putValue("cart", foodId);
-		
-		//System.out.println("Session VALUE>>>>>>>>>>>"+ session.getAttribute("cart"));
-		
+	
 		return true;
 	}
 		
@@ -96,9 +94,9 @@ public class HungryController
 		map.put("Food", new Food());
 		map.put("Food",foodService.find(id));
 		
-		for (Map.Entry<String, Object> entry : map.entrySet()) {
-		    System.out.println(">>>>>"+entry.getKey()+" : "+entry.getValue());
-		}
+//		for (Map.Entry<String, Object> entry : map.entrySet()) {
+//		    System.out.println(">>>>>"+entry.getKey()+" : "+entry.getValue());
+//		}
 		
 		return "hungry/cart";
 	}
