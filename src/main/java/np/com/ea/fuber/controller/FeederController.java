@@ -13,9 +13,12 @@ import np.com.ea.fuber.service.OrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -117,42 +120,22 @@ public class FeederController
 		return "redirect:/feeder/profile/"+feeder.getId();	
 	}		
 	
-//	@RequestMapping("/releasebacklog/{productBacklogId}")
-//	public String relaseproductbacklog(@PathVariable("productBacklogId") Long productbacklogId, Map<String, Object> map){	
-//		System.out.println("Caling Service");
-//		System.out.println(productbacklogId);
-//		map.put("ReleaseBacklog",new ReleaseBacklog());
-//		System.out.println("Caling Service");
-//		map.put("ReleaseBacklogList",productBacklogService.getReleaseByProductBacklogId(productbacklogId));
-//		System.out.println("called service");
-//		return "/productbacklog/listreleasebacklog";
-//	}
-//	
-//	@RequestMapping(value = "/saveProductBacklog", method = RequestMethod.POST)
-//	public String saveProductBacklog(@ModelAttribute("productbacklog") ProductBacklog productBacklog,
-//		BindingResult result) 
-//	{	
-//		productBacklogService.create(productBacklog);
-//
-//		return "redirect:index";
-//	}
-//
-//	@RequestMapping("/delete/{productBacklogId}")
-//	public String deleteProductBacklog(@PathVariable("productBacklogId") Long id) 
-//	{
-//		productBacklogService.delete(id);
-//
-//		return "redirect:/productbacklog/index";
-//	}
-//	
-//	@RequestMapping(value = "/{productBacklogId}/saveUserStory", method = RequestMethod.POST)
-//	public String saveUserStory(@ModelAttribute("userstory") UserStory userstory, @PathVariable("productBacklogId") Long pbId,
-//		BindingResult result) 
-//	{	
-//		ProductBacklog pb = productBacklogService.find(pbId);
-//		userstory.setProductBacklog(pb);
-//		UserStoryService.create(userstory);
-//
-//		return "redirect:../detail/" + pbId;
-//	}
+	@RequestMapping("/add")
+	public String setupform(Map<String,Object> map)
+	{
+		Feeder feeder=new Feeder();
+		map.put("feeder", feeder);
+		return "feeder/add";
+	}
+	@RequestMapping(value="/save",method=RequestMethod.POST)
+	public String doActions(@ModelAttribute Feeder feeder,BindingResult result,@RequestParam String action,Map<String,Object> map )
+	{	
+		Feeder feederResult = new Feeder();
+        feederService.add(feeder);
+		feederResult=feeder;
+       // map.put("feeder",feederResult);
+		//map.put("studentList", studentService.getAllStudent());
+		return "feeder/add";
+	}
+
 }

@@ -7,7 +7,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-           Dashboard <c:out value="${username}" />
+           Welcome <c:out value="${username}" />
           </h1>
           <ol class="breadcrumb">
            <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -40,20 +40,6 @@
             <div class="box-body">
               Fuber is an iterative and incremental agile software development methodology for managing product development. It defines "a flexible, holistic product development strategy where a development team works as a unit to reach a common goal", challenges assumptions of the "traditional, sequential approach" to product development, and enables teams to self-organize by encouraging physical co-location or close online collaboration of all team members, as well as daily face-to-face communication among all team members and disciplines in the project.
 			A key principle of fuber is its recognition that during a project the customers can change their minds about what they want and need (often called "requirements churn"), and that unpredicted challenges cannot be easily addressed in a traditional predictive or planned manner. As such, scrum adopts an empirical approach—accepting that the problem cannot be fully understood or defined, focusing instead on maximizing the team's ability to deliver quickly and respond to emerging requirements.
-            </div><!-- /.box-body -->
-           
-          </div><!-- /.box -->
-           <!-- Default box -->
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title"> Chart</h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-            	 <div id="curve_chart" style="width: 900px; height: 500px"></div>
             </div><!-- /.box-body -->
            
           </div><!-- /.box -->

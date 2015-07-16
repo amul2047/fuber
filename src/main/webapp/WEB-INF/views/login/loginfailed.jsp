@@ -48,7 +48,7 @@
 <!--                         </div> -->
                     </div>
                 </div>
-                 <a href="${pageContext.request.contextPath}/" class="btn btn-info">Login Again</a>
+                 <a href="login" class="btn btn-info">Login Again</a>
             </div>
            
         </div>

@@ -16,6 +16,8 @@ public interface FeederService {
 
 	public Feeder update(Feeder feeder);
 
+	public void add(Feeder feeder);
+
 	//public List<UserStory> getUserStoryByProductBacklogId(int productbacklogId);
 
 	//public List<ReleaseBacklog> getReleaseByProductBacklogId(int productbacklogId);

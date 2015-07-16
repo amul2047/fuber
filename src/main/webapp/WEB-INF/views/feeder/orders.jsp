@@ -7,7 +7,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-           Feeder's Orders List
+           ${username}'s Orders List
             <small></small>
           </h1>
           <ol class="breadcrumb">

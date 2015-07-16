@@ -1,5 +1,6 @@
 package np.com.ea.fuber.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,17 @@ public class OrderDaoImpl extends GenericDaoImpl<Order> implements OrderDao{
 	public List<Order> getOrdersByFeederId(int feederId){
 		Session session = sf.getCurrentSession();
 		Query q = session.createQuery(
-						"from Order o");
+						"Select DISTINCT o from Order o INNER JOIN o.orderItem oi "
+						+ "INNER JOIN oi.food f INNER JOIN f.feeder fdr "
+						+ "WHERE fdr.id =:fid");
 		
-				/*LEFT JOIN o.orderItem ol LEFT JOIN ol.food f LEFT JOIN f.feeder fdr WHERE" */
-				/*+ " fdr.id="+feederId); */
-		//System.out.println(">>>>>QUERY>>>>"+q.toString())
-		List<Order> orderList = q.list();
+		q.setParameter("fid", feederId);
+		List<Object> objList = q.list();
+		List<Order> orderList = new ArrayList<Order>();
+		for(Object o: objList){
+			orderList.add((Order) o);
+		}
+		System.out.println("<<<Number of Orders:" + orderList.size());
 		return orderList;		
 	}
 	
@@ -43,5 +49,15 @@ public class OrderDaoImpl extends GenericDaoImpl<Order> implements OrderDao{
 		result.put("OrderItems", o.getOrderItem());
 		
 		return result;
+	}
+
+	@Override
+	public List<Order> getOrderByHungryId(int hungryId) {
+		Session session = sf.getCurrentSession();
+		Query q = session.createQuery(
+						"from Order o");
+		
+		List<Order> orderList = q.list();
+		return orderList;
 	}
 }

@@ -7,7 +7,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-           Feeder List ${sessionScope.USER_ID}
+           Feeder's List
             <small>List of Nearest Feeders </small>
           </h1>
           <ol class="breadcrumb">

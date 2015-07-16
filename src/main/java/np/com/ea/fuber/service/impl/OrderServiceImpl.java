@@ -64,4 +64,10 @@ public class OrderServiceImpl implements OrderService{
 		return null;
 	}
 
+	@Override
+	public List<Order> getOrderByHungryId(int hungryId) {
+		
+		return orderDao.getOrderByHungryId(hungryId);
+	}
+
 }

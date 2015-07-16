@@ -12,5 +12,6 @@ public interface OrderDao extends GenericDao<Order> {
 
 	List<Order> getOrdersByFeederId(int feederId);
 	Map<String, Object> getOrderAndOrderList(int orderId);
+	List<Order> getOrderByHungryId(int hungryId);
 	
 }

@@ -6,4 +6,6 @@ import np.com.ea.fuber.util.GenericDao;
 
 public interface FeederDao extends GenericDao<Feeder> {
 
+	public void add(Feeder feeder);
+
 }	

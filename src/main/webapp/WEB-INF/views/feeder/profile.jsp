@@ -7,7 +7,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-           Feeder Profile
+           ${username}'s Profile
           </h1>
           <ol class="breadcrumb">
            <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -66,11 +66,8 @@
 <!-- /.content-wrapper -->
 
 <script type="text/javascript">
- 	function edit(id)
-	{
-		
+ 	function edit(id){	
 		window.location.href ="/fuber/feeder/profile/edit/" + id;
-
 	}
  </script>
 

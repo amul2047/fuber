@@ -2,6 +2,8 @@ package np.com.ea.fuber.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import np.com.ea.fuber.service.FoodService;
 import np.com.ea.fuber.service.UserService;
 
@@ -55,21 +57,27 @@ public class LoginController {
 		return "/login/loginfailed";
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Model model) {
-		return "/login";
-	}
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public String logout(Model model) {
+//		return "login/login";
+//	} )
+
 	
 	@RequestMapping(value = "/storeLogin", method = RequestMethod.GET)
-	public String storeLogin(Model model) {
+	public String storeLogin(Model model,HttpSession session) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//System.out.println("USER>>"+user.getUsername() + "PASS>>>" +user.getPassword() +"AUTH>>"+ user.getAuthorities() );
+		System.out.println("USER>>"+user.getUsername() + "PASS>>>" +user.getPassword() +"AUTH>>"+ user.getAuthorities() );
 		
 		np.com.ea.fuber.model.User us = userService.getUserIdByUserName(user.getUsername());
 		//System.out.println("===================="+us);
 		model.addAttribute("USER_ID", us.getId());
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("role", user.getAuthorities());
+		
+		session.putValue("USER_ID", us.getId());
+		session.putValue("username", user.getUsername());
+		session.putValue("role", user.getAuthorities());
+		
 		//System.out.println("Logged In:" + us.getId());
 		return "dashboard/index";
 	}

@@ -17,10 +17,12 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/logout"
 			access="permitAll" />
-		<security:intercept-url pattern="/feeder"
-			access="hasRole('ROLE_HUNGRY')" />
-		<security:intercept-url pattern="/admin**"
-			access="hasAnyRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/hungry"
+			access="hasRole('hungry')" />
+			<security:intercept-url pattern="/feeder"
+			access="hasAnyRole('feeder')" />
+		<security:intercept-url pattern="/admin"
+			access="hasAnyRole('admin')" />
 
 		<!-- <security:intercept-url pattern="/display" -->
 		<!-- access="isAuthenticated()" /> -->
@@ -28,7 +30,7 @@
 			login-page="/auth/login" default-target-url="/auth/storeLogin"
 			always-use-default-target="true" authentication-failure-url="/auth/denied" />
 		
-		<security:logout logout-success-url="/auth/login"/>
+		<security:logout logout-success-url="/auth/login" logout-url="/logout"/>
 		<security:session-management
 			invalid-session-url="/" />
 

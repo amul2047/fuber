@@ -31,6 +31,14 @@ public class DashboardController
 		return "dashboard/index";
 	}
 	
+	@RequestMapping(value = { "/" })
+	public String showLogin() 
+	{	
+		return "login/login";
+	}
+	
+	
+	
 
 //	@RequestMapping(value = { "/feeder", })
 //	public String listFeeder(Map<String, Object> map) 

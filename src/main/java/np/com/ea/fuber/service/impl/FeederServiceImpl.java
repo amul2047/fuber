@@ -50,6 +50,13 @@ public class FeederServiceImpl implements FeederService {
 	public Feeder update(Feeder feeder) {
 		return feederDao.update(feeder);
 	}
+
+	@Override
+	public void add(Feeder feeder) {
+		
+		feederDao.add(feeder);
+		
+	}
 	
 	
 }

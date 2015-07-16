@@ -1,5 +1,6 @@
 package np.com.ea.fuber.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -7,9 +8,11 @@ import javax.servlet.http.HttpSession;
 import np.com.ea.fuber.model.Feeder;
 import np.com.ea.fuber.model.Food;
 import np.com.ea.fuber.model.Hungry;
+import np.com.ea.fuber.model.Order;
 import np.com.ea.fuber.service.FeederService;
 import np.com.ea.fuber.service.FoodService;
 import np.com.ea.fuber.service.HungryService;
+import np.com.ea.fuber.service.OrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +38,9 @@ public class HungryController
 	
 	@Autowired
 	private HungryService hungryService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	@RequestMapping(value = { "/feeder", "/feeder/list" })
 	public String listFeeder(Map<String, Object> map) 
@@ -100,4 +106,16 @@ public class HungryController
 		
 		return "hungry/cart";
 	}
+	
+	@RequestMapping("/viewOrders/{hungryId}")
+	public String viewOrders(@PathVariable("hungryId") int hungryId, Map<String, Object> map){
+		map.put("Order", new Order());
+		List<Order> orderList = orderService.getOrderByHungryId(hungryId);
+		map.put("orderList", orderList);
+		for(Object o: orderList){
+			System.out.println(">>>"+o);
+			
+		}
+		return "/hungry/orders";
+	}	
 }

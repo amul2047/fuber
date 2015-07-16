@@ -22,9 +22,10 @@ public class Feeder {
 	private String contactLastName;
 	private String contactNumber;
 	private String contactEmail;
+	private String memberType;
+
 	@Embedded
 	private Address address;
-
 
 	//Current schedule is a list of timings 
 	private String schedule;
@@ -132,6 +133,22 @@ public class Feeder {
 
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
+	}
+	
+	public String getMemberType() {
+		return memberType;
+	}
+
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

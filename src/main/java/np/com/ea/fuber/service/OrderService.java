@@ -24,5 +24,7 @@ public interface OrderService {
 	
 	public Map<String, Object> getOrderAndOrderList(int orderId);
 
+	public List<Order> getOrderByHungryId(int hungryId);
+
 	//public List<ReleaseBacklog> getReleaseByProductBacklogId(int productbacklogId);
 }
